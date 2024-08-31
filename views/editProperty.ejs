@@ -1,0 +1,252 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Property</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Edit Property</h1>
+    <form action="/admin/update/property/<%= property._id %>" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="categories">Categories:</label>
+        <select name="categories" id="categories" multiple>
+          <option value="Trending" <%= property.categories.includes('Trending') ? 'selected' : '' %>>Trending</option>
+          <option value="Ultra luxury" <%= property.categories.includes('Ultra luxury') ? 'selected' : '' %>>Ultra luxury</option>
+          <option value="Luxury Project" <%= property.categories.includes('Luxury Project') ? 'selected' : '' %>>Luxury Project</option>
+          <option value="Premium Project" <%= property.categories.includes('Premium Project') ? 'selected' : '' %>>Premium Project</option>
+          <option value="Affordable Project" <%= property.categories.includes('Affordable Project') ? 'selected' : '' %>>Affordable Project</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="categories1">Categories1:</label>
+        <select name="categories1" id="categories1" multiple>
+          <option value="Residential Projects" <%= property.categories1.includes('Residential Projects') ? 'selected' : '' %>>Residential Projects</option>
+          <option value="Commercial Projects" <%= property.categories1.includes('Commercial Projects') ? 'selected' : '' %>>Commercial Projects</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input type="file" id="imageUrl" name="imageUrl" accept="image/*">
+        <% if (property.imageUrl) { %>
+          <img src="<%= property.imageUrl %>" alt="Property Image" style="max-width: 100%; margin-top: 10px;">
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%= property.name %>">
+      </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" value="<%= property.location %>">
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price" value="<%= property.price %>">
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="text" name="status" id="status" value="<%= property.status %>">
+      </div>
+      <div class="form-group">
+        <label for="configuration">Configuration:</label>
+        <input type="text" name="configuration" id="configuration" value="<%= property.configuration %>">
+      </div>
+      <div class="form-group">
+        <label for="possession">Possession Date:</label>
+        <input type="text" name="possession" id="possession" value="<%= property.possession %>">
+      </div>
+      <div class="form-group">
+        <label for="units">Units:</label>
+        <input type="number" name="units" id="units" value="<%= property.units %>">
+      </div>
+      <div class="form-group">
+        <label for="land">Land:</label>
+        <input type="text" name="land" id="land" value="<%= property.land %>">
+      </div>
+      <div class="form-group">
+        <label for="residence">Residence:</label>
+        <input type="text" name="residence" id="residence" value="<%= property.residence %>">
+      </div>
+      <div class="form-group">
+        <label for="builtup">Built-Up Area:</label>
+        <input type="text" name="builtup" id="builtup" value="<%= property.builtup %>">
+      </div>
+      <div class="form-group">
+        <label for="blocks">Blocks:</label>
+        <input type="text" name="blocks" id="blocks" value="<%= property.blocks %>">
+      </div>
+      <div class="form-group">
+        <label for="floor">Floor:</label>
+        <input type="text" name="floor" id="floor" value="<%= property.floor %>">
+      </div>
+      <div class="form-group">
+        <label for="noofunits">Number of Units:</label>
+        <input type="number" name="noofunits" id="noofunits" value="<%= property.noofunits %>">
+      </div>
+      <div class="form-group">
+        <label for="rera">RERA:</label>
+        <input type="text" name="rera" id="rera" value="<%= property.rera %>">
+      </div>
+      <div class="form-group">
+        <label for="point1">Point 1:</label>
+        <input type="text" id="point1" name="point1" value="<%= property.point1 %>">
+      </div>
+      <div class="form-group">
+        <label for="point2">Point 2:</label>
+        <input type="text" id="point2" name="point2" value="<%= property.point2 %>">
+      </div>
+      <div class="form-group">
+        <label for="point3">Point 3:</label>
+        <input type="text" id="point3" name="point3" value="<%= property.point3 %>">
+      </div>
+      <div class="form-group">
+        <label for="point4">Point 4:</label>
+        <input type="text" id="point4" name="point4" value="<%= property.point4 %>">
+      </div>
+      <div class="form-group">
+        <label for="point5">Point 5:</label>
+        <input type="text" id="point5" name="point5" value="<%= property.point5 %>">
+      </div>
+      <div class="form-group">
+        <label for="point6">Point 6:</label>
+        <input type="text" id="point6" name="point6" value="<%= property.point6 %>">
+      </div>
+      <div class="form-group">
+        <label for="point7">Point 7:</label>
+        <input type="text" id="point7" name="point7" value="<%= property.point7 %>">
+      </div>
+      <div class="form-group">
+        <label for="point8">Point 8:</label>
+        <input type="text" id="point8" name="point8" value="<%= property.point8 %>">
+      </div>
+      <div class="form-group">
+        <label for="point9">Point 9:</label>
+        <input type="text" id="point9" name="point9" value="<%= property.point9 %>">
+      </div>
+      <div class="form-group">
+        <label for="point10">Point 10:</label>
+        <input type="text" id="point10" name="point10" value="<%= property.point10 %>">
+      </div>
+      <div class="form-group">
+        <label for="about">About:</label>
+        <textarea id="about" name="about" rows="4"><%= property.about %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="unitytype">Unity Type:</label>
+        <input type="text" name="unitytype" id="unitytype" value="<%= property.unitytype %>">
+      </div>
+      <div class="form-group">
+        <label for="size">Size:</label>
+        <input type="text" name="size" id="size" value="<%= property.size %>">
+      </div>
+      <div class="form-group">
+        <label for="range">Range:</label>
+        <input type="text" name="range" id="range" value="<%= property.range %>">
+      </div>
+      <div class="form-group">
+        <label for="booking">Booking:</label>
+        <input type="text" name="booking" id="booking" value="<%= property.booking %>">
+      </div>
+      <div class="form-group">
+        <label for="token">Token:</label>
+        <input type="text" name="token" id="token" value="<%= property.token %>">
+      </div>
+      <div class="form-group">
+        <label for="plans">Plans:</label>
+        <input type="text" name="plans" id="plans" value="<%= property.plans %>">
+      </div>
+      <div class="form-group">
+        <label for="updatedat">Updated At:</label>
+        <input type="text" name="updatedat" id="updatedat" value="<%= property.updatedat %>">
+      </div>
+      <button type="submit">Save Changes</button>
+    </form>
+    <a href="/properties" class="back-link">Back to Properties</a>
+  </div>
+</body>
+
+</html>
+   -->
+
+   <h1 style="text-align: center;">in the process</h1>
