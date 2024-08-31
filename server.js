@@ -25,7 +25,7 @@ const upload = multer({
   limits: { fileSize: 50 * 1024 * 1024 } // Set file size limit (5 MB)
 });
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.use('/files', express.static(path.join(__dirname, 'uploads')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
